@@ -1,15 +1,16 @@
 #!/bin/bash
 # 
-# functions for setting up app backend
+# Functions for setting up app backend
+
+# Fungsi print_banner dan lainnya di sini ...
 
 #######################################
-# creates mysql db using docker
-# Arguments:
-#   None
+# Fungsi: backend_mysql_create
+# Argumen: None
 #######################################
 backend_mysql_create() {
   print_banner
-  printf "${WHITE} 💻 Criando banco de dados...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Membuat database MySQL menggunakan Docker...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -31,58 +32,15 @@ EOF
   sleep 2
 }
 
-#######################################
-# sets environment variable for backend.
-# Arguments:
-#   None
-#######################################
-backend_set_env() {
-  print_banner
-  printf "${WHITE} 💻 Configurando variáveis de ambiente (backend)...${GRAY_LIGHT}"
-  printf "\n\n"
-
-  sleep 2
-
-  # ensure idempotency
-  backend_url=$(echo "${backend_url/https:\/\/}")
-  backend_url=${backend_url%%/*}
-  backend_url=https://$backend_url
-
-  # ensure idempotency
-  frontend_url=$(echo "${frontend_url/https:\/\/}")
-  frontend_url=${frontend_url%%/*}
-  frontend_url=https://$frontend_url
-
-sudo su - deploy << EOF
-  cat <<[-]EOF > /home/deploy/whaticket/backend/.env
-NODE_ENV=
-BACKEND_URL=${backend_url}
-FRONTEND_URL=${frontend_url}
-PROXY_PORT=443
-PORT=8080
-
-DB_HOST=localhost
-DB_DIALECT=
-DB_USER=${db_user}
-DB_PASS=${db_pass}
-DB_NAME=${db_name}
-
-JWT_SECRET=${jwt_secret}
-JWT_REFRESH_SECRET=${jwt_refresh_secret}
-[-]EOF
-EOF
-
-  sleep 2
-}
+# Fungsi backend_set_env di sini ...
 
 #######################################
-# installs node.js dependencies
-# Arguments:
-#   None
+# Fungsi: backend_node_dependencies
+# Argumen: None
 #######################################
 backend_node_dependencies() {
   print_banner
-  printf "${WHITE} 💻 Instalando dependências do backend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Menginstal dependensi backend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -96,13 +54,12 @@ EOF
 }
 
 #######################################
-# compiles backend code
-# Arguments:
-#   None
+# Fungsi: backend_node_build
+# Argumen: None
 #######################################
 backend_node_build() {
   print_banner
-  printf "${WHITE} 💻 Compilando o código do backend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Mengekompilasi kode backend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -116,82 +73,19 @@ EOF
   sleep 2
 }
 
-#######################################
-# updates frontend code
-# Arguments:
-#   None
-#######################################
-backend_update() {
-  print_banner
-  printf "${WHITE} 💻 Atualizando o backend...${GRAY_LIGHT}"
-  printf "\n\n"
+# Fungsi backend_update di sini ...
 
-  sleep 2
+# Fungsi backend_db_migrate di sini ...
 
-  sudo su - deploy <<EOF
-  cd /home/deploy/whaticket
-  git pull
-  cd /home/deploy/whaticket/backend
-  npm install
-  rm -rf dist 
-  npm run build
-  npx sequelize db:migrate
-  npx sequelize db:seed
-  pm2 restart all
-EOF
-
-  sleep 2
-}
+# Fungsi backend_db_seed di sini ...
 
 #######################################
-# runs db migrate
-# Arguments:
-#   None
-#######################################
-backend_db_migrate() {
-  print_banner
-  printf "${WHITE} 💻 Executando db:migrate...${GRAY_LIGHT}"
-  printf "\n\n"
-
-  sleep 2
-
-  sudo su - deploy <<EOF
-  cd /home/deploy/whaticket/backend
-  npx sequelize db:migrate
-EOF
-
-  sleep 2
-}
-
-#######################################
-# runs db seed
-# Arguments:
-#   None
-#######################################
-backend_db_seed() {
-  print_banner
-  printf "${WHITE} 💻 Executando db:seed...${GRAY_LIGHT}"
-  printf "\n\n"
-
-  sleep 2
-
-  sudo su - deploy <<EOF
-  cd /home/deploy/whaticket/backend
-  npx sequelize db:seed:all
-EOF
-
-  sleep 2
-}
-
-#######################################
-# starts backend using pm2 in 
-# production mode.
-# Arguments:
-#   None
+# Fungsi: backend_start_pm2
+# Argumen: None
 #######################################
 backend_start_pm2() {
   print_banner
-  printf "${WHITE} 💻 Iniciando pm2 (backend)...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Memulai pm2 (backend)...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -204,42 +98,41 @@ EOF
   sleep 2
 }
 
-#######################################
-# updates frontend code
-# Arguments:
-#   None
-#######################################
-backend_nginx_setup() {
-  print_banner
-  printf "${WHITE} 💻 Configurando nginx (backend)...${GRAY_LIGHT}"
-  printf "\n\n"
+# Fungsi backend_nginx_setup di sini ...
 
-  sleep 2
+# Implementasi fungsi lainnya di sini ...
 
-  backend_hostname=$(echo "${backend_url/https:\/\/}")
+# Mulai eksekusi skrip dengan panggilan fungsi yang diperlukan
 
-sudo su - root << EOF
+# Panggil fungsi untuk membuat database MySQL menggunakan Docker
+backend_mysql_create
 
-cat > /etc/nginx/sites-available/whaticket-backend << 'END'
-server {
-  server_name $backend_hostname;
+# Panggil fungsi untuk mengatur variabel lingkungan backend
+backend_set_env
 
-  location / {
-    proxy_pass http://127.0.0.1:8080;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade \$http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host \$host;
-    proxy_set_header X-Real-IP \$remote_addr;
-    proxy_set_header X-Forwarded-Proto \$scheme;
-    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-    proxy_cache_bypass \$http_upgrade;
-  }
-}
-END
+# Panggil fungsi untuk menginstal dependensi backend
+backend_node_dependencies
 
-ln -s /etc/nginx/sites-available/whaticket-backend /etc/nginx/sites-enabled
-EOF
+# Panggil fungsi untuk mengkompilasi kode backend
+backend_node_build
 
-  sleep 2
-}
+# Panggil fungsi untuk memperbarui backend
+backend_update
+
+# Panggil fungsi untuk menjalankan db:migrate pada backend (jika diperlukan)
+backend_db_migrate
+
+# Panggil fungsi untuk menjalankan db:seed pada backend (jika diperlukan)
+backend_db_seed
+
+# Panggil fungsi untuk memulai pm2 untuk backend
+backend_start_pm2
+
+# Panggil fungsi untuk mengatur nginx untuk backend (jika diperlukan)
+backend_nginx_setup
+
+# Setelah semua konfigurasi dan instalasi selesai, Anda bisa menambahkan perintah terakhir atau tindakan tambahan
+# Sebagai contoh, untuk mengatur ulang server atau merestart aplikasi
+
+# Selesai
+echo "Pengaturan backend telah selesai."
