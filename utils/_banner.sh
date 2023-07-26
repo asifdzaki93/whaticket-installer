@@ -23,7 +23,7 @@ print_banner() {
 
   printf "${GREEN}";
   printf "                                                     ▄▄█▀▀▀▀▀▀▀█▄▄  \n";
-  printf "                                                   ${GREEN}▄█▀${NC}   ${WHITE}▄▄${NC}      ${GREEN}▀█▄\n";
+  printf "                                                   ${GREEN}▄█${NC}   ${WHITE}▄▄${NC}      ${GREEN}▀█▄\n";
   printf "                                                   ${GREEN}█${NC}    ${WHITE}███${NC}         ${GREEN}█\n";
   printf "                                                   ${GREEN}█${NC}    ${WHITE}██▄         ${GREEN}█${NC}\n";
   printf "                                                   ${GREEN}█${NC}     ${WHITE}▀██▄${NC} ${WHITE}██${NC}    ${GREEN}█\n";
@@ -46,3 +46,12 @@ print_banner() {
 
   printf "\n"
 }
+
+# Implementasi fungsi lainnya di sini ...
+
+# Panggil fungsi print_banner
+print_banner
+
+# Jika Anda ingin memanggil fungsi lain atau melakukan eksekusi tindakan lainnya, Anda dapat melakukannya di sini.
+
+# Selesai
