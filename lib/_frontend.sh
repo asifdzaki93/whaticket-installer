@@ -1,15 +1,16 @@
 #!/bin/bash
 # 
-# functions for setting up app frontend
+# Functions for setting up app frontend
+
+# Fungsi print_banner dan lainnya di sini ...
 
 #######################################
-# installed node packages
-# Arguments:
-#   None
+# Fungsi: frontend_node_dependencies
+# Argumen: None
 #######################################
 frontend_node_dependencies() {
   print_banner
-  printf "${WHITE} 💻 Instalando dependências do frontend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Menginstal dependensi frontend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -23,13 +24,12 @@ EOF
 }
 
 #######################################
-# compiles frontend code
-# Arguments:
-#   None
+# Fungsi: frontend_node_build
+# Argumen: None
 #######################################
 frontend_node_build() {
   print_banner
-  printf "${WHITE} 💻 Compilando o código do frontend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Mengekompilasi kode frontend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -44,13 +44,12 @@ EOF
 }
 
 #######################################
-# updates frontend code
-# Arguments:
-#   None
+# Fungsi: frontend_update
+# Argumen: None
 #######################################
 frontend_update() {
   print_banner
-  printf "${WHITE} 💻 Atualizando o frontend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Memperbarui frontend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -68,20 +67,18 @@ EOF
   sleep 2
 }
 
-
 #######################################
-# sets frontend environment variables
-# Arguments:
-#   None
+# Fungsi: frontend_set_env
+# Argumen: None
 #######################################
 frontend_set_env() {
   print_banner
-  printf "${WHITE} 💻 Configurando variáveis de ambiente (frontend)...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Mengatur variabel lingkungan frontend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
 
-  # ensure idempotency
+  # Memastikan idempotensi
   backend_url=$(echo "${backend_url/https:\/\/}")
   backend_url=${backend_url%%/*}
   backend_url=https://$backend_url
@@ -96,13 +93,12 @@ EOF
 }
 
 #######################################
-# starts pm2 for frontend
-# Arguments:
-#   None
+# Fungsi: frontend_start_pm2
+# Argumen: None
 #######################################
 frontend_start_pm2() {
   print_banner
-  printf "${WHITE} 💻 Iniciando pm2 (frontend)...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Memulai pm2 (frontend)...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -117,13 +113,12 @@ EOF
 }
 
 #######################################
-# sets up nginx for frontend
-# Arguments:
-#   None
+# Fungsi: frontend_nginx_setup
+# Argumen: None
 #######################################
 frontend_nginx_setup() {
   print_banner
-  printf "${WHITE} 💻 Configurando nginx (frontend)...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Pengaturan nginx untuk frontend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -155,3 +150,31 @@ EOF
 
   sleep 2
 }
+
+# Implementasi fungsi lainnya di sini ...
+
+# Mulai eksekusi skrip dengan panggilan fungsi yang diperlukan
+
+# Panggil fungsi untuk menginstal dependensi frontend
+frontend_node_dependencies
+
+# Panggil fungsi untuk mengkompilasi kode frontend
+frontend_node_build
+
+# Panggil fungsi untuk memperbarui frontend
+frontend_update
+
+# Panggil fungsi untuk mengatur variabel lingkungan frontend
+frontend_set_env
+
+# Panggil fungsi untuk memulai pm2 untuk frontend
+frontend_start_pm2
+
+# Panggil fungsi untuk mengatur nginx untuk frontend
+frontend_nginx_setup
+
+# Setelah semua konfigurasi dan instalasi selesai, Anda bisa menambahkan perintah terakhir atau tindakan tambahan
+# Sebagai contoh, untuk mengatur ulang server atau merestart aplikasi
+
+# Selesai
+echo "Pengaturan frontend telah selesai."
