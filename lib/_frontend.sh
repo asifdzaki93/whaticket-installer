@@ -1,16 +1,15 @@
 #!/bin/bash
 # 
-# Functions for setting up app frontend
-
-# Fungsi print_banner dan lainnya di sini ...
+# functions for setting up app frontend
 
 #######################################
-# Fungsi: frontend_node_dependencies
-# Argumen: None
+# installed node packages
+# Arguments:
+#   None
 #######################################
 frontend_node_dependencies() {
   print_banner
-  printf "${WHITE} 💻 Menginstal dependensi frontend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Instalando dependências do frontend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -24,12 +23,13 @@ EOF
 }
 
 #######################################
-# Fungsi: frontend_node_build
-# Argumen: None
+# compiles frontend code
+# Arguments:
+#   None
 #######################################
 frontend_node_build() {
   print_banner
-  printf "${WHITE} 💻 Mengekompilasi kode frontend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Compilando o código do frontend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -44,12 +44,13 @@ EOF
 }
 
 #######################################
-# Fungsi: frontend_update
-# Argumen: None
+# updates frontend code
+# Arguments:
+#   None
 #######################################
 frontend_update() {
   print_banner
-  printf "${WHITE} 💻 Memperbarui frontend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Atualizando o frontend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -67,18 +68,20 @@ EOF
   sleep 2
 }
 
+
 #######################################
-# Fungsi: frontend_set_env
-# Argumen: None
+# sets frontend environment variables
+# Arguments:
+#   None
 #######################################
 frontend_set_env() {
   print_banner
-  printf "${WHITE} 💻 Mengatur variabel lingkungan frontend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Configurando variáveis de ambiente (frontend)...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
 
-  # Memastikan idempotensi
+  # ensure idempotency
   backend_url=$(echo "${backend_url/https:\/\/}")
   backend_url=${backend_url%%/*}
   backend_url=https://$backend_url
@@ -93,12 +96,13 @@ EOF
 }
 
 #######################################
-# Fungsi: frontend_start_pm2
-# Argumen: None
+# starts pm2 for frontend
+# Arguments:
+#   None
 #######################################
 frontend_start_pm2() {
   print_banner
-  printf "${WHITE} 💻 Memulai pm2 (frontend)...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Iniciando pm2 (frontend)...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -113,12 +117,13 @@ EOF
 }
 
 #######################################
-# Fungsi: frontend_nginx_setup
-# Argumen: None
+# sets up nginx for frontend
+# Arguments:
+#   None
 #######################################
 frontend_nginx_setup() {
   print_banner
-  printf "${WHITE} 💻 Pengaturan nginx untuk frontend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Configurando nginx (frontend)...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2

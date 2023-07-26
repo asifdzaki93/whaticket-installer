@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# reset shell colors
+# reset shell colors 
+#ok
 tput init
 
 # https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself

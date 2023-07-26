@@ -1,15 +1,15 @@
 #!/bin/bash
 # 
-# fungsi untuk setup backend aplikasi
+# functions for setting up app backend
 
 #######################################
-# membuat mysql db menggunakan docker
-# Argumen:
-#   Tidak ada
+# creates mysql db using docker
+# Arguments:
+#   None
 #######################################
-backend_mysql_buat() {
+backend_mysql_create() {
   print_banner
-  printf "${WHITE} 💻 Membuat database...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Criando banco de dados...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -21,34 +21,34 @@ backend_mysql_buat() {
                 -e MYSQL_DATABASE=${db_name} \
                 -e MYSQL_USER=${db_user} \
                 -e MYSQL_PASSWORD=${db_pass} \
-                --restart always \
+             --restart always \
                 -p 3306:3306 \
                 -d mariadb:latest \
-                --character-set-server=utf8mb4 \
-                --collation-server=utf8mb4_bin
+             --character-set-server=utf8mb4 \
+             --collation-server=utf8mb4_bin
 EOF
 
   sleep 2
 }
 
 #######################################
-# mengatur variable environment untuk backend.
-# Argumen:
-#   Tidak ada
+# sets environment variable for backend.
+# Arguments:
+#   None
 #######################################
-backend_setel_env() {
+backend_set_env() {
   print_banner
-  printf "${WHITE} 💻 Mengatur variabel lingkungan (backend)...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Configurando variáveis de ambiente (backend)...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
 
-  # pastikan idempotensi
+  # ensure idempotency
   backend_url=$(echo "${backend_url/https:\/\/}")
   backend_url=${backend_url%%/*}
   backend_url=https://$backend_url
 
-  # pastikan idempotensi
+  # ensure idempotency
   frontend_url=$(echo "${frontend_url/https:\/\/}")
   frontend_url=${frontend_url%%/*}
   frontend_url=https://$frontend_url
@@ -76,13 +76,13 @@ EOF
 }
 
 #######################################
-# menginstal dependensi node.js
-# Argumen:
-#   Tidak ada
+# installs node.js dependencies
+# Arguments:
+#   None
 #######################################
-backend_node_kebutuhan() {
+backend_node_dependencies() {
   print_banner
-  printf "${WHITE} 💻 Menginstal dependensi backend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Instalando dependências do backend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -96,13 +96,13 @@ EOF
 }
 
 #######################################
-# mengompilasi kode backend
-# Argumen:
-#   Tidak ada
+# compiles backend code
+# Arguments:
+#   None
 #######################################
-backend_node_bangun() {
+backend_node_build() {
   print_banner
-  printf "${WHITE} 💻 Membangun kode backend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Compilando o código do backend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -117,13 +117,13 @@ EOF
 }
 
 #######################################
-# memperbarui kode frontend
-# Argumen:
-#   Tidak ada
+# updates frontend code
+# Arguments:
+#   None
 #######################################
-backend_perbarui() {
+backend_update() {
   print_banner
-  printf "${WHITE} 💻 Memperbarui backend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Atualizando o backend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -144,13 +144,13 @@ EOF
 }
 
 #######################################
-# menjalankan db migrate
-# Argumen:
-#   Tidak ada
+# runs db migrate
+# Arguments:
+#   None
 #######################################
 backend_db_migrate() {
   print_banner
-  printf "${WHITE} 💻 Menjalankan db:migrate...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Executando db:migrate...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -164,13 +164,13 @@ EOF
 }
 
 #######################################
-# menjalankan db seed
-# Argumen:
-#   Tidak ada
+# runs db seed
+# Arguments:
+#   None
 #######################################
 backend_db_seed() {
   print_banner
-  printf "${WHITE} 💻 Menjalankan db:seed...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Executando db:seed...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -184,14 +184,14 @@ EOF
 }
 
 #######################################
-# memulai backend menggunakan pm2 dalam 
-# mode produksi.
-# Argumen:
-#   Tidak ada
+# starts backend using pm2 in 
+# production mode.
+# Arguments:
+#   None
 #######################################
-backend_mulai_pm2() {
+backend_start_pm2() {
   print_banner
-  printf "${WHITE} 💻 Memulai pm2 (backend)...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Iniciando pm2 (backend)...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -205,13 +205,13 @@ EOF
 }
 
 #######################################
-# mengatur nginx untuk backend
-# Argumen:
-#   Tidak ada
+# updates frontend code
+# Arguments:
+#   None
 #######################################
 backend_nginx_setup() {
   print_banner
-  printf "${WHITE} 💻 Mengatur nginx (backend)...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Configurando nginx (backend)...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2

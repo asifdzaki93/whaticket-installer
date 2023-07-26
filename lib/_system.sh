@@ -1,15 +1,15 @@
 #!/bin/bash
 # 
-# pengelolaan sistem
+# system management
 
 #######################################
-# membuat pengguna
-# Argumen:
-#   Tidak ada
+# creates user
+# Arguments:
+#   None
 #######################################
 system_create_user() {
   print_banner
-  printf "${WHITE} 💻 Sekarang, kita akan membuat pengguna untuk penyebaran...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Agora, vamos criar o usuário para deploy...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -23,13 +23,13 @@ EOF
 }
 
 #######################################
-# mengkloning repositori menggunakan git
-# Argumen:
-#   Tidak ada
+# clones repostories using git
+# Arguments:
+#   None
 #######################################
 system_git_clone() {
   print_banner
-  printf "${WHITE} 💻 Mendownload kode whaticket...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Fazendo download do código whaticket...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -42,13 +42,13 @@ EOF
 }
 
 #######################################
-# memperbarui sistem
-# Argumen:
-#   Tidak ada
+# updates system
+# Arguments:
+#   None
 #######################################
 system_update() {
   print_banner
-  printf "${WHITE} 💻 Mari kita perbarui sistem...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Vamos atualizar o sistema...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -61,13 +61,13 @@ EOF
 }
 
 #######################################
-# menginstal node
-# Argumen:
-#   Tidak ada
+# installs node
+# Arguments:
+#   None
 #######################################
 system_node_install() {
   print_banner
-  printf "${WHITE} 💻 Menginstal nodejs...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Instalando nodejs...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -81,13 +81,13 @@ EOF
 }
 
 #######################################
-# menginstal docker
-# Argumen:
-#   Tidak ada
+# installs docker
+# Arguments:
+#   None
 #######################################
 system_docker_install() {
   print_banner
-  printf "${WHITE} 💻 Menginstal docker...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Instalando docker...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -108,19 +108,19 @@ EOF
 }
 
 #######################################
-# Menanyakan lokasi file yang berisi
-# banyak URL untuk streaming.
-# Global:
+# Ask for file location containing
+# multiple URL for streaming.
+# Globals:
 #   WHITE
 #   GRAY_LIGHT
 #   BATCH_DIR
 #   PROJECT_ROOT
-# Argumen:
-#   Tidak ada
+# Arguments:
+#   None
 #######################################
 system_puppeteer_dependencies() {
   print_banner
-  printf "${WHITE} 💻 Menginstal dependensi puppeteer...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Instalando puppeteer dependencies...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -175,13 +175,13 @@ EOF
 }
 
 #######################################
-# menginstal pm2
-# Argumen:
-#   Tidak ada
+# installs pm2
+# Arguments:
+#   None
 #######################################
 system_pm2_install() {
   print_banner
-  printf "${WHITE} 💻 Menginstal pm2...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Instalando pm2...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -196,13 +196,13 @@ EOF
 }
 
 #######################################
-# menginstal snapd
-# Argumen:
-#   Tidak ada
+# installs snapd
+# Arguments:
+#   None
 #######################################
 system_snapd_install() {
   print_banner
-  printf "${WHITE} 💻 Menginstal snapd...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Instalando snapd...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -217,13 +217,13 @@ EOF
 }
 
 #######################################
-# menginstal certbot
-# Argumen:
-#   Tidak ada
+# installs certbot
+# Arguments:
+#   None
 #######################################
 system_certbot_install() {
   print_banner
-  printf "${WHITE} 💻 Menginstal certbot...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Instalando certbot...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -238,13 +238,13 @@ EOF
 }
 
 #######################################
-# menginstal nginx
-# Argumen:
-#   Tidak ada
+# installs nginx
+# Arguments:
+#   None
 #######################################
 system_nginx_install() {
   print_banner
-  printf "${WHITE} 💻 Menginstal nginx...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Instalando nginx...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -258,13 +258,13 @@ EOF
 }
 
 #######################################
-# merestart nginx
-# Argumen:
-#   Tidak ada
+# restarts nginx
+# Arguments:
+#   None
 #######################################
 system_nginx_restart() {
   print_banner
-  printf "${WHITE} 💻 Mengulang kembali nginx...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 reiniciando nginx...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -277,13 +277,13 @@ EOF
 }
 
 #######################################
-# setup untuk nginx.conf
-# Argumen:
-#   Tidak ada
+# setup for nginx.conf
+# Arguments:
+#   None
 #######################################
 system_nginx_conf() {
   print_banner
-  printf "${WHITE} 💻 Mengkonfigurasi nginx...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 configurando nginx...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -306,7 +306,7 @@ EOF
 #######################################
 system_certbot_setup() {
   print_banner
-  printf "${WHITE} 💻 Pengaturan certbot...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Configurando certbot...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
