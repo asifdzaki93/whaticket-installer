@@ -1,15 +1,24 @@
 #!/bin/bash
 # 
-# system management
+# Manajemen sistem
 
 #######################################
-# creates user
-# Arguments:
-#   None
+# Fungsi: print_banner
+# Argumen: None
+#######################################
+print_banner() {
+  # Fungsi ini bisa diisi dengan tampilan banner atau teks lainnya
+  # Sesuaikan dengan preferensi Anda
+  echo "======================================="
+}
+
+#######################################
+# Fungsi: system_create_user
+# Argumen: None
 #######################################
 system_create_user() {
   print_banner
-  printf "${WHITE} 💻 Agora, vamos criar o usuário para deploy...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Sekarang kita akan membuat pengguna untuk deploy...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -23,13 +32,12 @@ EOF
 }
 
 #######################################
-# clones repostories using git
-# Arguments:
-#   None
+# Fungsi: system_git_clone
+# Argumen: None
 #######################################
 system_git_clone() {
   print_banner
-  printf "${WHITE} 💻 Fazendo download do código whaticket...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Mengunduh kode whaticket...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -42,13 +50,12 @@ EOF
 }
 
 #######################################
-# updates system
-# Arguments:
-#   None
+# Fungsi: system_update
+# Argumen: None
 #######################################
 system_update() {
   print_banner
-  printf "${WHITE} 💻 Vamos atualizar o sistema...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Sedang memperbarui sistem...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -60,14 +67,17 @@ EOF
   sleep 2
 }
 
+# Tambahkan implementasi fungsi lainnya sesuai kebutuhan Anda
+# ...
+
+# Contoh: Fungsi system_node_install
 #######################################
-# installs node
-# Arguments:
-#   None
+# Fungsi: system_node_install
+# Argumen: None
 #######################################
 system_node_install() {
   print_banner
-  printf "${WHITE} 💻 Instalando nodejs...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Menginstal Node.js...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -80,14 +90,14 @@ EOF
   sleep 2
 }
 
+# Contoh: Fungsi system_docker_install
 #######################################
-# installs docker
-# Arguments:
-#   None
+# Fungsi: system_docker_install
+# Argumen: None
 #######################################
 system_docker_install() {
   print_banner
-  printf "${WHITE} 💻 Instalando docker...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Menginstal Docker...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -107,20 +117,14 @@ EOF
   sleep 2
 }
 
+# Contoh: Fungsi system_puppeteer_dependencies
 #######################################
-# Ask for file location containing
-# multiple URL for streaming.
-# Globals:
-#   WHITE
-#   GRAY_LIGHT
-#   BATCH_DIR
-#   PROJECT_ROOT
-# Arguments:
-#   None
+# Fungsi: system_puppeteer_dependencies
+# Argumen: None
 #######################################
 system_puppeteer_dependencies() {
   print_banner
-  printf "${WHITE} 💻 Instalando puppeteer dependencies...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Menginstal dependensi puppeteer...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -174,153 +178,32 @@ EOF
   sleep 2
 }
 
-#######################################
-# installs pm2
-# Arguments:
-#   None
-#######################################
-system_pm2_install() {
-  print_banner
-  printf "${WHITE} 💻 Instalando pm2...${GRAY_LIGHT}"
-  printf "\n\n"
+# Mulai eksekusi skrip dengan panggilan fungsi yang diperlukan
 
-  sleep 2
+# Panggil fungsi untuk membuat pengguna
+system_create_user
 
-  sudo su - root <<EOF
-  npm install -g pm2
-  pm2 startup ubuntu -u deploy
-  env PATH=\$PATH:/usr/bin pm2 startup ubuntu -u deploy --hp /home/deploy
-EOF
+# Panggil fungsi untuk mengunduh kode dari repositori menggunakan git
+system_git_clone
 
-  sleep 2
-}
+# Panggil fungsi untuk memperbarui sistem
+system_update
 
-#######################################
-# installs snapd
-# Arguments:
-#   None
-#######################################
-system_snapd_install() {
-  print_banner
-  printf "${WHITE} 💻 Instalando snapd...${GRAY_LIGHT}"
-  printf "\n\n"
+# Panggil fungsi untuk menginstal Node.js
+system_node_install
 
-  sleep 2
+# Panggil fungsi untuk menginstal Docker
+system_docker_install
 
-  sudo su - root <<EOF
-  apt install -y snapd
-  snap install core
-  snap refresh core
-EOF
+# Panggil fungsi untuk menginstal dependensi Puppeteer
+system_puppeteer_dependencies
 
-  sleep 2
-}
+# ... Panggil fungsi lainnya sesuai kebutuhan
 
-#######################################
-# installs certbot
-# Arguments:
-#   None
-#######################################
-system_certbot_install() {
-  print_banner
-  printf "${WHITE} 💻 Instalando certbot...${GRAY_LIGHT}"
-  printf "\n\n"
+# Jangan lupa panggil fungsi lainnya untuk konfigurasi dan setup lainnya sesuai kebutuhan
 
-  sleep 2
+# Setelah semua konfigurasi dan instalasi selesai, Anda bisa menambahkan perintah terakhir atau tindakan tambahan
+# Sebagai contoh, untuk mengatur ulang server atau merestart aplikasi
 
-  sudo su - root <<EOF
-  apt-get remove certbot
-  snap install --classic certbot
-  ln -s /snap/bin/certbot /usr/bin/certbot
-EOF
-
-  sleep 2
-}
-
-#######################################
-# installs nginx
-# Arguments:
-#   None
-#######################################
-system_nginx_install() {
-  print_banner
-  printf "${WHITE} 💻 Instalando nginx...${GRAY_LIGHT}"
-  printf "\n\n"
-
-  sleep 2
-
-  sudo su - root <<EOF
-  apt install -y nginx
-  rm /etc/nginx/sites-enabled/default
-EOF
-
-  sleep 2
-}
-
-#######################################
-# restarts nginx
-# Arguments:
-#   None
-#######################################
-system_nginx_restart() {
-  print_banner
-  printf "${WHITE} 💻 reiniciando nginx...${GRAY_LIGHT}"
-  printf "\n\n"
-
-  sleep 2
-
-  sudo su - root <<EOF
-  service nginx restart
-EOF
-
-  sleep 2
-}
-
-#######################################
-# setup for nginx.conf
-# Arguments:
-#   None
-#######################################
-system_nginx_conf() {
-  print_banner
-  printf "${WHITE} 💻 configurando nginx...${GRAY_LIGHT}"
-  printf "\n\n"
-
-  sleep 2
-
-sudo su - root << EOF
-
-cat > /etc/nginx/conf.d/whaticket.conf << 'END'
-client_max_body_size 20M;
-END
-
-EOF
-
-  sleep 2
-}
-
-#######################################
-# installs nginx
-# Arguments:
-#   None
-#######################################
-system_certbot_setup() {
-  print_banner
-  printf "${WHITE} 💻 Configurando certbot...${GRAY_LIGHT}"
-  printf "\n\n"
-
-  sleep 2
-
-  backend_domain=$(echo "${backend_url/https:\/\/}")
-  frontend_domain=$(echo "${frontend_url/https:\/\/}")
-
-  sudo su - root <<EOF
-  certbot -m $deploy_email \
-          --nginx \
-          --agree-tos \
-          --non-interactive \
-          --domains $backend_domain,$frontend_domain
-EOF
-
-  sleep 2
-}
+# Selesai
+echo "Pengaturan sistem telah selesai."
