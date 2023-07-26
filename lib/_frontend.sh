@@ -150,31 +150,3 @@ EOF
 
   sleep 2
 }
-
-# Implementasi fungsi lainnya di sini ...
-
-# Mulai eksekusi skrip dengan panggilan fungsi yang diperlukan
-
-# Panggil fungsi untuk menginstal dependensi frontend
-frontend_node_dependencies
-
-# Panggil fungsi untuk mengkompilasi kode frontend
-frontend_node_build
-
-# Panggil fungsi untuk memperbarui frontend
-frontend_update
-
-# Panggil fungsi untuk mengatur variabel lingkungan frontend
-frontend_set_env
-
-# Panggil fungsi untuk memulai pm2 untuk frontend
-frontend_start_pm2
-
-# Panggil fungsi untuk mengatur nginx untuk frontend
-frontend_nginx_setup
-
-# Setelah semua konfigurasi dan instalasi selesai, Anda bisa menambahkan perintah terakhir atau tindakan tambahan
-# Sebagai contoh, untuk mengatur ulang server atau merestart aplikasi
-
-# Selesai
-echo "Pengaturan frontend telah selesai."
