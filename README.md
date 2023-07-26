@@ -1,9 +1,8 @@
-Interactive CLI tool for installing and updating whaticket
+### Alat Interaktif CLI untuk Menginstal dan Memperbarui Whaticket
 
-### download & setup
+### Unduh & Persiapan
 
-Firstly, you need to download it:
-
+Pertama, Anda perlu mengunduhnya:
 
 ```bash
 sudo apt -y update && apt -y upgrade
@@ -11,15 +10,15 @@ sudo apt install -y git
 git clone https://github.com/asifdzaki93/whaticket-installer.git
 ```
 
-Now, all you gotta do is making it executable:
+Sekarang, yang perlu Anda lakukan adalah membuatnya dapat dieksekusi:
 
 ```bash
 sudo chmod +x ./whaticket-installer/whaticket
 ```
 
-### usage
+### Penggunaan
 
-After downloading and making it executable, you need to **navigate into** the installer directory and **run the script with sudo**:
+Setelah mengunduh dan memberinya izin eksekusi, Anda perlu **masuk ke** direktori installer dan **jalankan skrip dengan sudo**:
 
 ```bash
 cd ./whaticket-installer
@@ -28,3 +27,5 @@ cd ./whaticket-installer
 ```bash
 sudo ./whaticket
 ```
+
+Dengan melakukan langkah-langkah di atas, Anda akan dapat menggunakan alat ini untuk menginstal dan memperbarui Whaticket dengan antarmuka baris perintah yang interaktif. Selamat mencoba!
